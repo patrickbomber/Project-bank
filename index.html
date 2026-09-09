@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Retro — Live Retrospective</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <section id="home" class="screen active">
+    <div class="hero">
+      <div class="brand"><b>R</b> retro</div>
+      <span class="eyebrow">LIVE TEAM RETROSPECTIVE</span>
+      <h1>Make every sprint<br><em>better together.</em></h1>
+      <p>Create a room, invite your team and capture the conversation in real time.</p>
+      <div class="actions"><button id="createBtn" class="primary">Create a room →</button><button id="joinBtn" class="secondary">Join a room</button></div>
+      <div class="features"><span>⚡ <b>Real-time sync</b></span><span>👥 <b>Live presence</b></span><span>📤 <b>Local export</b></span></div>
+    </div>
+  </section>
+
+  <section id="setup" class="screen">
+    <div class="card setup">
+      <button class="back" data-home>← Back</button><div class="brand small"><b>R</b> retro</div>
+      <h2 id="setupHeading">Create a room</h2><p class="muted">No account required. Your name identifies your contributions.</p>
+      <label>Room name<input id="roomName" value="Sprint Retrospective" maxlength="80"></label>
+      <label>Your name<input id="yourName" placeholder="e.g. Patrick" maxlength="50"></label>
+      <button id="setupSubmit" class="primary full">Continue →</button>
+      <p id="setupError" class="error"></p>
+    </div>
+  </section>
+
+  <section id="board" class="screen">
+    <header>
+      <div><div class="brand tiny"><b>R</b> retro</div><h2 id="title">Retrospective</h2><small>Room <strong id="code">------</strong> · <i></i> <span id="online">0</span> online</small></div>
+      <div class="header-actions"><button id="share" class="secondary">↗ Share</button><button id="export" class="secondary">↓ Export</button><button id="leave" class="danger">Leave</button></div>
+    </header>
+    <main class="columns">
+      <section class="column good"><div class="colhead"><div><span>✓</span><h3>What went well</h3></div><b id="goodCount">0</b></div><p>Celebrate wins and positive moments.</p><div id="goodCards"></div><button class="add" data-section="good">＋ Add thought</button></section>
+      <section class="column problem"><div class="colhead"><div><span>!</span><h3>Problems faced</h3></div><b id="problemCount">0</b></div><p>Surface blockers and opportunities to improve.</p><div id="problemCards"></div><button class="add" data-section="problem">＋ Add thought</button></section>
+      <section class="column shout"><div class="colhead"><div><span>★</span><h3>Shout-outs</h3></div><b id="shoutCount">0</b></div><p>Recognize someone who made a difference.</p><div id="shoutCards"></div><button class="add" data-section="shout">＋ Give a shout-out</button></section>
+    </main>
+  </section>
+</div>
+
+<div id="thoughtModal" class="modal"><div class="modal-card"><button class="x" data-close>×</button><h3 id="modalTitle">Add a thought</h3><p class="muted" id="modalHint">Share something with the team.</p><div id="recipientBox" class="hidden"><label>Shout-out to<input id="recipient" maxlength="50" placeholder="Colleague's name"></label></div><label>Your thought<textarea id="thought" maxlength="500" rows="5" placeholder="Write your thought..."></textarea></label><div class="modal-foot"><small id="chars">0 / 500</small><button id="saveThought" class="primary">Add to board</button></div></div></div>
+
+<div id="exportModal" class="modal"><div class="modal-card"><button class="x" data-close>×</button><h3>Export retrospective</h3><p class="muted">The file is generated locally in your browser.</p><div class="export-grid"><button data-format="csv"><b>CSV</b><small>Spreadsheet</small> →</button><button data-format="txt"><b>TXT</b><small>Readable report</small> →</button><button data-format="json"><b>JSON</b><small>Raw data</small> →</button></div></div></div>
+<div id="toast"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body></html>
