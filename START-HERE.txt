@@ -1,0 +1,16 @@
+RETROSPECTIVE ROOM — START HERE
+
+This is the corrected real-time version.
+
+1. Extract the ZIP.
+2. Open config.js in Notepad and enter your Supabase Project URL and Publishable Key.
+3. In Supabase SQL Editor, run supabase.sql once.
+4. On Windows, double-click run-local.bat.
+5. Open http://localhost:8000.
+6. Create a room and share the generated invite link.
+
+Do NOT double-click index.html for live multi-device mode. The browser may restrict file:// pages.
+
+If Supabase is not configured, the app runs in local Demo mode so you can test the UI. Demo mode does not sync between devices.
+
+Use only a browser-safe Supabase Publishable key (sb_publishable_...). Never put a secret/service-role key in config.js.

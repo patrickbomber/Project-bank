@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Retrospective Room</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:#f6f8fb;color:#172033}.top{height:68px;background:#fff;border-bottom:1px solid #e5e9f0;display:flex;align-items:center;justify-content:space-between;padding:0 28px}.brand{font-size:20px;font-weight:800}.pill{background:#eef3ff;padding:7px 12px;border-radius:20px;font-size:13px;font-weight:700}.wrap{max-width:1180px;margin:auto;padding:40px 20px}.card{background:#fff;border:1px solid #e3e8ef;border-radius:16px;box-shadow:0 8px 25px #1720330d}.setup{max-width:640px;margin:25px auto;padding:30px}.setup h1{margin:0 0 8px;font-size:30px}.muted,.status{color:#687386}.tabs{display:flex;gap:8px;margin:24px 0}.tab{flex:1;padding:11px;border:1px solid #dce2eb;border-radius:9px;background:#fff;font-weight:700}.tab.active{background:#172033;color:#fff}label{display:block;margin:16px 0 7px;font-weight:700;font-size:14px}input,textarea{width:100%;padding:12px;border:1px solid #d6dce6;border-radius:9px;font:inherit}button{border:0;border-radius:9px;padding:11px 15px;font:inherit;font-weight:700;cursor:pointer}.primary{background:#172033;color:#fff}.start{width:100%;margin-top:20px}.secondary{background:#eef1f5}.danger{background:#fff0f0;color:#a52b2b}.error{display:none;margin-top:12px;padding:10px;border-radius:9px;background:#fff0f0;color:#a52b2b;font-size:14px}.help{margin-top:13px;padding:12px;background:#f7f9fc;border-radius:9px;font-size:13px}.hidden{display:none!important}.boardHead{display:flex;justify-content:space-between;align-items:flex-start;gap:15px;margin-bottom:20px}.boardHead h1{margin:0 0 6px}.actions{display:flex;gap:8px;flex-wrap:wrap}.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.col{padding:18px;min-height:390px}.colHead{display:flex;justify-content:space-between;align-items:center}.col h2{font-size:17px}.count{background:#edf1f5;border-radius:20px;padding:5px 9px;font-size:12px}.add{width:100%;background:#f0f3f7}.thought{border:1px solid #e0e5ed;border-radius:11px;padding:13px;margin-top:10px}.thought p{margin:0 0 9px;white-space:pre-wrap;word-break:break-word}.meta{font-size:12px;color:#7a8495;margin-bottom:9px}.reactions{display:flex;gap:6px}.reaction{background:#f1f4f8;padding:6px 9px;font-size:12px}.empty{text-align:center;color:#8b95a5;padding:45px 8px;font-size:14px}.modalBg{position:fixed;inset:0;background:#0f172a66;display:flex;align-items:center;justify-content:center;padding:20px}.modal{background:#fff;border-radius:15px;padding:24px;width:min(520px,100%)}.modal h2{margin-top:0}.modalActions{display:flex;justify-content:flex-end;gap:8px;margin-top:17px}.modalActions .primary{width:auto;margin:0}@media(max-width:800px){.cols{grid-template-columns:1fr}.boardHead{flex-direction:column}.top{padding:0 16px}.setup{padding:22px}}
+</style>
+</head>
+<body>
+<header class="top"><div class="brand">Retrospective Room</div><div id="pill" class="pill">Ready</div></header>
+<main class="wrap">
+<section id="setup" class="card setup">
+<h1>Start a retrospective</h1><p class="muted">Create a room or join an existing team retrospective.</p>
+<div class="tabs"><button id="ct" class="tab active">Create room</button><button id="jt" class="tab">Join room</button></div>
+<div id="create"><label>Room name</label><input id="rname" placeholder="Sprint 24 Retrospective"><label>Your name</label><input id="cname" placeholder="Alex"></div>
+<div id="join" class="hidden"><label>Room code</label><input id="rcode" maxlength="6" placeholder="ABC123"><label>Your name</label><input id="jname" placeholder="Alex"></div>
+<button id="start" class="primary start">Create room</button><div id="err" class="error"></div>
+<div class="help">Live multi-device mode needs Supabase configuration. Without it, the app automatically uses local Demo mode.</div>
+</section>
+
+<section id="board" class="hidden">
+<div class="boardHead"><div><h1 id="title"></h1><div class="status"><span id="room"></span> · <span id="people"></span></div></div><div class="actions"><button id="share" class="secondary">Share</button><button id="export" class="secondary">Export</button><button id="leave" class="danger">Leave</button></div></div>
+<div class="cols">
+<div class="card col"><div class="colHead"><h2>What Went Well</h2><span id="gc" class="count">0</span></div><button class="add" data-s="good">+ Add thought</button><div id="gl"></div></div>
+<div class="card col"><div class="colHead"><h2>Problems Faced</h2><span id="pc" class="count">0</span></div><button class="add" data-s="problem">+ Add thought</button><div id="pl"></div></div>
+<div class="card col"><div class="colHead"><h2>Shout-outs</h2><span id="sc" class="count">0</span></div><button class="add" data-s="shout">+ Add shout-out</button><div id="sl"></div></div>
+</div></section></main>
+
+<div id="mb" class="modalBg hidden"><div class="modal"><h2 id="mt">Add thought</h2><div id="rw" class="hidden"><label>Shout-out to</label><input id="recipient" placeholder="Colleague name"></div><label>Your thought</label><textarea id="text" rows="5" maxlength="500" placeholder="Share your thought..."></textarea><div id="me" class="error"></div><div class="modalActions"><button id="cancel" class="secondary">Cancel</button><button id="save" class="primary">Add</button></div></div></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="config.js"></script><script src="app.js"></script>
+</body></html>
